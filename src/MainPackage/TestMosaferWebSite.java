@@ -5,9 +5,11 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class OrganaizedTest extends Parameters {
+public class TestMosaferWebSite extends Parameters {
 	@BeforeTest
 	public void setUp() {
+		   driver.manage().window().maximize();
+
 	}
 
 	@Test(enabled = false)
@@ -16,7 +18,7 @@ public class OrganaizedTest extends Parameters {
 
 		driver.findElement(By.className("cta__saudi")).click();
 
-		verifyLanguageisEnglish();
+		verifyLanguageisNotEnglish();
 		verifyCurrencyIsSAR();
 		verifyQitafLogoDisplayed();
 		verifyHotelsTabSelected();
@@ -26,7 +28,6 @@ public class OrganaizedTest extends Parameters {
 	
 	@Test () 
 	public void test_website_with_random_Languges() throws InterruptedException {
-	  //  driver.manage().window().maximize();
 
 		 navigateToRandomWebsite();
 
@@ -36,11 +37,14 @@ public class OrganaizedTest extends Parameters {
 			TypeOnAutoCompleteListWithRandomArabicCity();
 			randomlySelcetRoom();
 			 CheckPageLoaded() ;
+			 lowesPriceAssersion();
 		}
 		else {
 			TypeOnAutoCompleteListWithRandomEnglishCity();
 			randomlySelcetRoom();
 			CheckPageLoadedEnglish();
+			lowesPriceAssersion();
+			
 		}
 		
 	}

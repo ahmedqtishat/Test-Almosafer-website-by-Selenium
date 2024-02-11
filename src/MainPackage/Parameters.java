@@ -1,6 +1,7 @@
 package MainPackage;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -21,7 +22,7 @@ public class Parameters {
 		driver.get("https://www.almosafer.com/en");
 	}
 
-	void verifyLanguageisEnglish() {
+	void verifyLanguageisNotEnglish() {
 		String actualLanguage = driver.findElement(By.cssSelector("[data-testid='Header__LanguageSwitch']")).getText();
 		Assert.assertNotEquals(actualLanguage, "English", "Language is not expected to be English");
 	}
@@ -108,6 +109,22 @@ public class Parameters {
  Assert.assertTrue(CheckText, "Check if the page are loaded by Word (found)");
 	}
 
+	
+	void lowesPriceAssersion() {
+		
+		driver.findElement(By.cssSelector("[data-testid='HotelSearchResult__sort__LOWEST_PRICE']")).click();
+   List <WebElement>	Prices =	driver.findElements(By.className("Price__Value"));
+		   
+		   for(int i=0;i<Prices.size();i++) {
+		   }
+			   String FirstPriceText=Prices.get(0).getText();
+			   String LastPricetext=Prices.get(Prices.size()-1).getText();		
+			   
+			   double  firstprice=Double.parseDouble(FirstPriceText);
+			   double lastprice=Double.parseDouble(LastPricetext);
+			   Assert.assertTrue(firstprice < lastprice,"Ensure that the last price is greater than the first price");
+		
+	}
 
 	static String[] Char = { "A", "B" };
 	static String[] websites = { "https://www.almosafer.com/en", "https://www.almosafer.com/ar" };
